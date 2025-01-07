@@ -5,4 +5,23 @@ class Card:
         self.suit = suit
     
     def __str__(self) -> str:
-        return f"{self.rank}{self.suit}"
+        if self.rank == "10":
+            return f"""        ┌─────────┐
+        │{self.rank}       │
+        │         │
+        │         │
+        │    {self.suit}    │
+        │         │
+        │         │
+        │       {self.rank}│
+        └─────────┘"""
+
+        return f"""        ┌─────────┐
+        │{self.rank}        │
+        │         │
+        │         │
+        │    {self.suit}    │
+        │         │
+        │         │
+        │        {self.rank}│
+        └─────────┘"""
