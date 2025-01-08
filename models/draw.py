@@ -9,5 +9,9 @@ class Draw:
         self.card5 = None
     
     def __str__(self) -> str:
-        pass
+        if self.card4:
+            if self.card5:
+                pass
+            pass
+        
 
