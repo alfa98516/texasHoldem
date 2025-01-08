@@ -11,7 +11,34 @@ class Draw:
     def __str__(self) -> str:
         if self.card4:
             if self.card5:
-                pass
-            pass
-        
+                return f"""┌─────────┐┌─────────┐┌─────────┐┌─────────┐┌─────────┐
+│{self.card1.rank}       ││{self.card2.rank}       ││{self.card3.rank}       ││{self.card4.rank}       ││{self.card5.rank}       │
+│         ││         ││         ││         ││         │
+│         ││         ││         ││         ││         │
+│    {self.card1.suit}    ││    {self.card2.suit}    ││    {self.card3.suit}    ││    {self.card4.suit}    ││    {self.card5.suit}    │
+│         ││         ││         ││         ││         │
+│         ││         ││         ││         ││         │
+│       {self.card1.rank}││       {self.card2.rank}││       {self.card3.rank}││       {self.card4.rank}││       {self.card5.rank}│
+└─────────┘└─────────┘└─────────┘└─────────┘└─────────┘
+"""
+            return f"""┌─────────┐┌─────────┐┌─────────┐┌─────────┐
+│{self.card1.rank}       ││{self.card2.rank}       ││{self.card3.rank}       ││{self.card4.rank}       │
+│         ││         ││         ││         │
+│         ││         ││         ││         │
+│    {self.card1.suit}    ││    {self.card2.suit}    ││    {self.card3.suit}    ││    {self.card4.suit}    │
+│         ││         ││         ││         │
+│         ││         ││         ││         │
+│       {self.card1.rank}││       {self.card2.rank}││       {self.card3.rank}││       {self.card4.rank}│
+└─────────┘└─────────┘└─────────┘└─────────┘
+"""
+        return f"""┌─────────┐┌─────────┐┌─────────┐
+│{self.card1.rank}       ││{self.card2.rank}       ││{self.card3.rank}       │
+│         ││         ││         │
+│         ││         ││         │
+│    {self.card1.suit}    ││    {self.card2.suit}    ││    {self.card3.suit}    │
+│         ││         ││         │
+│         ││         ││         │
+│       {self.card1.rank}││       {self.card2.rank}││       {self.card3.rank}│
+└─────────┘└─────────┘└─────────┘
+"""
 

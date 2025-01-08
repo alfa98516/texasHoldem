@@ -7,4 +7,4 @@ class UserStorage:
         self.__users: list[dict] = load(open(self.__userPath, 'r', encoding="utf-8"))
     
     def getAllUsers(self) -> list[User]:
-        return [User(x["userName"], x["password"], x["balance"]) for x in self.__users]
+        return [User(x["userName"], x["password"], x["balance"], x["gameCount"], x["bluffCount"]) for x in self.__users]

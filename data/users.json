@@ -2,6 +2,8 @@
     {
         "userName": "Alfa",
         "password": "123password",
-        "balance": 200
+        "balance": 200,
+        "gameCount": 0,
+        "bluffCount": 0
     }
 ]
