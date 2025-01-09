@@ -32,6 +32,9 @@ class GameUI(Clear):
                     print("Bet Not High Enough")
                     input("Press Enter To Continue.....")
                     continue
+                if playerBet > user.balance:
+                    print("Not Enough Balance in account")
+                    input("Press Enter To Continue.....")
 
             except ValueError:
                 print("Bet Amount Invalid")
@@ -57,15 +60,49 @@ class GameUI(Clear):
                     self.logicWrapper.bluffCheck(gameCards[0], playerBet, (round/4)*200, user)
                     print("Thanks For Playing :)")
                     return
-                        
+            
+
 
             AIbet += (round/4)*200
             pot += AIbet
 
             print(f"AI bets {AIbet}")
             t.sleep(1)
-
-            self.clear(False, None, gameCards[1])
+            while True:
+                self.clear(False, None, gameCards[1])
+                print(gameCards[0])
+                print("1.) Raise")
+                print("2.) Call")
+                print("3.) Fold")
+                print()
+                usrInput: str = input("Please Choose an Option: ")
+                
+                if usrInput == "1":
+                    print(f"Current bet: {playerBet}")
+                    try:
+                        betInc: int = int(input("How much more would you like to increse?: "))
+                        if betInc < 0:
+                            print("Bet Needs to be a Positive Integer")
+                            input("Press Enter To Continue....")
+                            continue
+                        if betInc > user.balance:
+                            print("Not Enough Balance in Account")
+                            input("Press Enter To Continue....")
+                            continue
+                    except ValueError:
+                        print("Bet Needs to be a number")
+                        input("Press Enter To Continue....")
+                        continue
+                    pot += betInc
+                    user.balance -= betInc
+                    print("Funds Have Been Withdrawn from Account")
+                    break
+                if usrInput == "2":
+                    break
+                if usrInput == "3":
+                    break
+                print("Not Valid")
+                continue
             
 
 
