@@ -43,7 +43,10 @@ class AIlogic:
                     betInc += 40
 
         if playerBet > betInc+minimum:
-            bluffChance = (user.bluffCount / user.gameCount)*100
+            try:
+                bluffChance = (user.bluffCount / user.gameCount)*100
+            except ZeroDivisionError:
+                return playerBet-minimum
             d100 = r.rabint(1, 100)
             if d100 >= bluffChance:
 

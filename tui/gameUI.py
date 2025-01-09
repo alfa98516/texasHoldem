@@ -42,7 +42,7 @@ class GameUI(Clear):
             user.balance -= playerBet
 
             AIbet = self.logicWrapper.AIbetLogic(gameCards[2], playerBet, (round/4)*200, user)
-            if not AIbet:
+            if AIbet < 0:
                 print("AI Folds, You Win The Pot")
                 user.balance += pot + (round/4)*200
                 print(f"{(round/4)*400} has been added to your balance")
@@ -59,13 +59,14 @@ class GameUI(Clear):
                     return
                         
 
-            pot += AIbet + (round/4)*200
+            AIbet += (round/4)*200
+            pot += AIbet
 
             print(f"AI bets {AIbet}")
             t.sleep(1)
 
             self.clear(False, None, gameCards[1])
-            input()
+            
 
 
 
