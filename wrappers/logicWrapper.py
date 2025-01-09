@@ -18,5 +18,8 @@ class LogicWrapper:
     def initializeGame(self, deck) -> list[Hand, Draw, Hand]:
         return self.deckLogic.initializeGame(deck)
     
-    def AIbetLogic(self, hand: Hand, playerBet: int, minmum: int, draw: Draw = None) -> int:
-        return self.AIlogic.AIbetLogic(hand, playerBet, minmum, draw)
+    def AIbetLogic(self, hand: Hand, playerBet: int, minmum: int, user: User, draw: Draw = None) -> int:
+        return self.AIlogic.AIbetLogic(hand, playerBet, minmum, user, draw)
+    
+    def bluffCheck(self, hand: Hand, bet: int, minimum: int, user: User, draw: Draw = None) -> bool:
+        return self.userLogic.bluffCheck(hand, bet, minimum, user, draw)

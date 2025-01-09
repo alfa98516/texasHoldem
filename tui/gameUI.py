@@ -41,7 +41,7 @@ class GameUI(Clear):
             pot += playerBet
             user.balance -= playerBet
 
-            AIbet = self.logicWrapper.AIbetLogic(gameCards[2], playerBet, (round/4)*200)
+            AIbet = self.logicWrapper.AIbetLogic(gameCards[2], playerBet, (round/4)*200, user)
             if not AIbet:
                 print("AI Folds, You Win The Pot")
                 user.balance += pot + (round/4)*200
@@ -54,7 +54,7 @@ class GameUI(Clear):
                     if usrInput.lower() == "n":
                         quit = True
                     user.gameCount += 1
-                    self.logicWrapper.bluffCheck(gameCards[0], playerBet, user)
+                    self.logicWrapper.bluffCheck(gameCards[0], playerBet, (round/4)*200, user)
                     print("Thanks For Playing :)")
                     return
                         

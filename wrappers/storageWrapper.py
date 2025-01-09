@@ -6,3 +6,6 @@ class StorageWrapper:
 
     def getAllUsers(self) -> list[User]:
         return self.userStorage.getAllUsers()
+    
+    def saveNewUserJson(self, users: list[User]) -> None:
+        self.userStorage.saveNewUserJson(users)

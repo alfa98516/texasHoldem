@@ -8,3 +8,12 @@ class UserStorage:
     
     def getAllUsers(self) -> list[User]:
         return [User(x["userName"], x["password"], x["balance"], x["gameCount"], x["bluffCount"]) for x in self.__users]
+    
+    def saveNewUserJson(self, users: list[User]) -> None:
+        userDictList: list[dict] = []
+
+        for x in users:
+            userDictList.append(dict(x.__dict__))
+            
+        with open(self.__userPath, "w", encoding="utf-8") as json:
+            dump(userDictList, json, indent=4)

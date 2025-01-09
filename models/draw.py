@@ -5,8 +5,8 @@ class Draw:
         self.card1 = card1
         self.card2 = card2
         self.card3 = card3
-        self.card4 = None
-        self.card5 = None
+        self.card4: Card = None
+        self.card5: Card = None
     
     def __str__(self) -> str:
         if self.card4:
