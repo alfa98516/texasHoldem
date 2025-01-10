@@ -57,7 +57,8 @@ class GameUI(Clear):
                     if usrInput.lower() == "n":
                         quit = True
                     user.gameCount += 1
-                    self.logicWrapper.bluffCheck(gameCards[0], playerBet, (round/4)*200, user)
+                    if self.logicWrapper.bluffCheck(gameCards[0], playerBet, (round/4)*200, user):
+                        print("You liar, I'll get you next time")
                     print("Thanks For Playing :)")
                     return
             
@@ -95,15 +96,54 @@ class GameUI(Clear):
                         continue
                     pot += betInc
                     user.balance -= betInc
+                    user.gameCount += 1
                     print("Funds Have Been Withdrawn from Account")
                     break
                 if usrInput == "2":
+                    print("Good Choice")
+                    round += 1
+                    user.gameCount += 1
                     break
                 if usrInput == "3":
-                    break
-                print("Not Valid")
-                continue
-            
+                    user.balance -= playerBet
+                    user.gameCount += 1
+                    print(f"{playerBet} withdrawn from account")
+                    t.sleep(1)
+                    self.clear(False)
+                    a.tprint("AI Cards", "3D Diagonal")
+                    print(gameCards[2])
+                    input("Press enter to continue.....")
+                    quit = True
+                else:
+                    print("Not Valid")
+                    continue
+
+            if usrInput == "2" or usrInput == "1":
+                betInc = self.logicWrapper.AIbetLogic(gameCards[2], playerBet, (round/4)*200, user)
+                if betInc < 0:
+                    print("AI Folds, You Win The Pot")
+                    if self.logicWrapper.bluffCheck(gameCards[0], playerBet, (round/4)*200, user, gameCards[1]):
+                        print("You liar, I'll get you next time")
+                    user.balance += pot + (round/4)*200
+                AIbet += betInc
+                pot += AIbet 
+                print(f"AI adds {betInc} to pot")
+                while True:
+                    self.clear(False, None, gameCards[1])
+                    if AIbet > playerBet:
+                        print("1.) Call")
+                        print("2.) Fold")
+                        usrInput: str = input("Please Choose Option: ")
+                        if usrInput == "1":
+                            user.balance -= (AIbet - playerBet)
+                            pot += (AIbet - playerBet)
+                            playerBet = AIbet
+
+                        if usrInput == "2":
+                            pass
+                        else:
+                            print("Not Valid")
+                            continue
 
 
 
